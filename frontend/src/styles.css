@@ -1,0 +1,652 @@
+:root {
+  --ff-bg: #14161a;
+  --ff-surface: #1c1f26;
+  --ff-surface-raised: #232733;
+  --ff-border: #2f3441;
+  --ff-text: #e6e8ee;
+  --ff-text-muted: #9aa1b1;
+  --ff-accent: #5b9cf8;
+  --ff-danger: #f2777a;
+  --ff-radius: 6px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+  margin: 0;
+}
+
+body {
+  background: var(--ff-bg);
+  color: var(--ff-text);
+  font: 14px/1.5 system-ui, -apple-system, 'Segoe UI', sans-serif;
+}
+
+.ff-app {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+/* ---------- App bar ---------- */
+.ff-appbar {
+  display: flex;
+  align-items: baseline;
+  gap: 16px;
+  padding: 10px 16px;
+  background: var(--ff-surface);
+  border-bottom: 1px solid var(--ff-border);
+  flex: 0 0 auto;
+}
+
+.ff-appbar__title {
+  margin: 0;
+  font-size: 15px;
+  font-weight: 600;
+  letter-spacing: 0.01em;
+}
+
+.ff-appbar__hint {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ff-text-muted);
+}
+
+.ff-dock {
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+/* ---------- Dock chrome ---------- */
+.ff-tab {
+  display: flex;
+  align-items: center;
+  height: 100%;
+  padding: 0 14px;
+  cursor: pointer;
+  user-select: none;
+  white-space: nowrap;
+  font-size: 13px;
+}
+
+.ff-tab__title {
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.ff-header-actions {
+  display: flex;
+  align-items: center;
+  gap: 2px;
+  padding-right: 6px;
+  height: 100%;
+}
+
+.ff-icon-button {
+  background: transparent;
+  border: none;
+  color: var(--ff-text-muted);
+  cursor: pointer;
+  font-size: 13px;
+  line-height: 1;
+  padding: 4px 6px;
+  border-radius: 4px;
+}
+
+.ff-icon-button:hover {
+  background: var(--ff-surface-raised);
+  color: var(--ff-text);
+}
+
+/* ---------- Panels ---------- */
+.ff-panel {
+  height: 100%;
+  overflow: auto;
+  background: var(--ff-bg);
+}
+
+.ff-panel--form {
+  padding: 16px;
+}
+
+.ff-panel--dashboard {
+  position: relative;
+  overflow: hidden;
+  padding: 0;
+}
+
+.ff-panel__status {
+  padding: 16px;
+}
+
+.ff-embed {
+  width: 100%;
+  height: 100%;
+}
+
+/* The SDK injects a bare iframe with no sizing of its own. */
+.ff-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+
+.ff-refresh-pill {
+  position: absolute;
+  top: 12px;
+  right: 16px;
+  z-index: 2;
+  padding: 4px 10px;
+  border-radius: 999px;
+  font-size: 12px;
+  background: var(--ff-surface-raised);
+  border: 1px solid var(--ff-border);
+  color: var(--ff-text-muted);
+}
+
+/* ---------- Form ---------- */
+.ff-form {
+  display: flex;
+  flex-direction: column;
+  gap: 14px;
+}
+
+.ff-field {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ff-field__label {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--ff-text-muted);
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+
+.ff-field__optional {
+  text-transform: none;
+  letter-spacing: 0;
+  font-weight: 400;
+}
+
+.ff-input {
+  width: 100%;
+  padding: 8px 10px;
+  background: var(--ff-surface);
+  border: 1px solid var(--ff-border);
+  border-radius: var(--ff-radius);
+  color: var(--ff-text);
+  font: inherit;
+}
+
+.ff-input:focus-visible {
+  outline: 2px solid var(--ff-accent);
+  outline-offset: 1px;
+  border-color: transparent;
+}
+
+.ff-input[aria-invalid='true'] {
+  border-color: var(--ff-danger);
+}
+
+.ff-input--textarea {
+  resize: vertical;
+  min-height: 64px;
+}
+
+.ff-field__help {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ff-text-muted);
+}
+
+.ff-field__error {
+  margin: 0;
+  font-size: 12px;
+  color: var(--ff-danger);
+}
+
+.ff-button {
+  align-self: flex-start;
+  padding: 8px 18px;
+  background: var(--ff-accent);
+  border: none;
+  border-radius: var(--ff-radius);
+  color: #0d1117;
+  font: inherit;
+  font-weight: 600;
+  cursor: pointer;
+}
+
+.ff-button:hover:not(:disabled) {
+  filter: brightness(1.08);
+}
+
+.ff-button:disabled {
+  opacity: 0.55;
+  cursor: not-allowed;
+}
+
+/* ---------- Recent submissions ---------- */
+.ff-recent {
+  margin-top: 28px;
+  border-top: 1px solid var(--ff-border);
+  padding-top: 14px;
+}
+
+.ff-recent__heading {
+  margin: 0 0 8px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ff-text-muted);
+}
+
+.ff-recent__list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}
+
+.ff-recent__item {
+  display: flex;
+  justify-content: space-between;
+  gap: 12px;
+  padding: 6px 10px;
+  background: var(--ff-surface);
+  border-radius: var(--ff-radius);
+  font-size: 13px;
+}
+
+.ff-recent__secondary {
+  color: var(--ff-text-muted);
+  white-space: nowrap;
+}
+
+/* ---------- Messaging ---------- */
+.ff-muted {
+  color: var(--ff-text-muted);
+}
+
+.ff-error-banner {
+  margin: 0;
+  padding: 10px 12px;
+  background: rgba(242, 119, 122, 0.12);
+  border: 1px solid rgba(242, 119, 122, 0.4);
+  border-radius: var(--ff-radius);
+  color: var(--ff-text);
+  font-size: 13px;
+}
+
+.ff-error-banner--block {
+  margin: 16px;
+}
+
+.ff-error-banner p {
+  margin: 6px 0 0;
+  color: var(--ff-text-muted);
+}
+
+/* ---------- Setup panel ---------- */
+.ff-panel--setup {
+  padding: 16px;
+}
+
+.ff-setup-section {
+  margin-bottom: 22px;
+  padding-bottom: 18px;
+  border-bottom: 1px solid var(--ff-border);
+}
+
+.ff-setup-section:last-child {
+  border-bottom: none;
+}
+
+.ff-setup-section__title {
+  margin: 0 0 10px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ff-text-muted);
+}
+
+.ff-setup-section > * + * {
+  margin-top: 8px;
+}
+
+.ff-status {
+  margin: 0;
+  font-size: 13px;
+  display: flex;
+  align-items: baseline;
+  gap: 7px;
+}
+
+.ff-status::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.ff-status--ok::before {
+  background: #6bbf73;
+}
+
+.ff-status--bad::before {
+  background: var(--ff-danger);
+}
+
+.ff-small {
+  font-size: 12px;
+}
+
+.ff-code-block {
+  display: block;
+  padding: 7px 9px;
+  background: var(--ff-surface);
+  border: 1px solid var(--ff-border);
+  border-radius: var(--ff-radius);
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  overflow-x: auto;
+  white-space: nowrap;
+}
+
+.ff-summary {
+  display: grid;
+  grid-template-columns: auto 1fr;
+  gap: 4px 14px;
+  margin: 10px 0 0;
+  font-size: 13px;
+}
+
+.ff-summary dt {
+  color: var(--ff-text-muted);
+  white-space: nowrap;
+}
+
+.ff-summary dd {
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+
+.ff-panel--setup code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 0.92em;
+  background: var(--ff-surface);
+  padding: 1px 4px;
+  border-radius: 3px;
+}
+
+/* ---------- View switcher ---------- */
+.ff-viewswitcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.ff-viewswitcher__label {
+  font-size: 11px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--ff-text-muted);
+}
+
+.ff-viewswitcher__create {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+.ff-input--compact {
+  padding: 4px 8px;
+  font-size: 13px;
+  width: auto;
+}
+
+.ff-appbar__hint {
+  margin-left: auto;
+}
+
+/* ---------- Buttons ---------- */
+.ff-button--small {
+  padding: 4px 10px;
+  font-size: 12px;
+}
+
+.ff-button--ghost {
+  background: transparent;
+  border: 1px solid var(--ff-border);
+  color: var(--ff-text);
+}
+
+.ff-button--ghost:hover:not(:disabled) {
+  background: var(--ff-surface-raised);
+  filter: none;
+}
+
+.ff-button--danger {
+  background: transparent;
+  border: 1px solid rgba(242, 119, 122, 0.5);
+  color: var(--ff-danger);
+}
+
+.ff-button--danger:hover:not(:disabled) {
+  background: rgba(242, 119, 122, 0.12);
+  filter: none;
+}
+
+.ff-button-row {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+}
+
+.ff-button-row--wrap {
+  flex-wrap: wrap;
+}
+
+/* ---------- Panel toolbar (view / edit) ---------- */
+.ff-panel-toolbar {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  padding: 6px 10px;
+  border-bottom: 1px solid var(--ff-border);
+  background: var(--ff-surface);
+  flex: 0 0 auto;
+}
+
+.ff-panel-toolbar__name {
+  font-size: 13px;
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ff-segmented {
+  margin-left: auto;
+  display: flex;
+  border: 1px solid var(--ff-border);
+  border-radius: var(--ff-radius);
+  overflow: hidden;
+}
+
+.ff-segmented button {
+  background: transparent;
+  border: none;
+  color: var(--ff-text-muted);
+  font: inherit;
+  font-size: 12px;
+  padding: 3px 12px;
+  cursor: pointer;
+}
+
+.ff-segmented button.is-active {
+  background: var(--ff-accent);
+  color: #0d1117;
+  font-weight: 600;
+}
+
+.ff-segmented button:disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+}
+
+.ff-panel--dashboard {
+  display: flex;
+  flex-direction: column;
+}
+
+.ff-panel__body {
+  position: relative;
+  flex: 1 1 auto;
+  min-height: 0;
+}
+
+.ff-edit-note {
+  padding: 6px 10px;
+  font-size: 12px;
+  color: var(--ff-text-muted);
+  background: var(--ff-surface);
+  border-bottom: 1px solid var(--ff-border);
+}
+
+.ff-edit-note a {
+  color: var(--ff-accent);
+}
+
+/* The edit-mode iframe sits under the note, so give it the remaining space. */
+.ff-panel__body:has(.ff-edit-note) .ff-embed {
+  height: calc(100% - 30px);
+}
+
+/* ---------- Lists ---------- */
+.ff-list {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.ff-list__item {
+  background: var(--ff-surface);
+  border: 1px solid var(--ff-border);
+  border-radius: var(--ff-radius);
+}
+
+.ff-list__row {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 7px 10px;
+  font-size: 13px;
+}
+
+.ff-list__title {
+  font-weight: 500;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+}
+
+.ff-list__meta {
+  margin-left: auto;
+  font-size: 12px;
+  color: var(--ff-text-muted);
+  white-space: nowrap;
+}
+
+.ff-list__detail {
+  padding: 4px 10px 10px 30px;
+  border-top: 1px solid var(--ff-border);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.ff-disclosure {
+  background: transparent;
+  border: none;
+  color: var(--ff-text-muted);
+  cursor: pointer;
+  font-size: 11px;
+  padding: 0;
+  width: 12px;
+}
+
+.ff-dot {
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  flex: 0 0 auto;
+}
+
+.ff-dot--ok {
+  background: #6bbf73;
+}
+
+.ff-dot--warn {
+  background: #d8a657;
+}
+
+.ff-badge {
+  font-size: 10px;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 2px 6px;
+  border-radius: 3px;
+  background: var(--ff-surface-raised);
+  color: var(--ff-text-muted);
+}
+
+.ff-checklist {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px;
+  font-size: 13px;
+}
+
+.ff-checklist label {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  cursor: pointer;
+}
+
+.ff-inset {
+  display: flex;
+  gap: 8px;
+  align-items: center;
+  flex-wrap: wrap;
+  padding: 8px;
+  background: var(--ff-surface);
+  border: 1px solid var(--ff-border);
+  border-radius: var(--ff-radius);
+}
+
+.ff-error-inline {
+  font-size: 12px;
+  color: var(--ff-danger);
+}
